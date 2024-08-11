@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>asciidude — portfolio</title>
+
+        <script
+            src="https://kit.fontawesome.com/241c57a42b.js"
+            crossorigin="anonymous"
+        ></script>
+
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="icon" href="images/pfp.png" />
+        
+        <meta name="title" content="asciidude — portfolio">
+        <meta name="description" content="Hello! My name is asciidude, this is my portfolio, where all my most notable projects are showcased. :)">
+        <meta name="keywords" content="asciidude, portfolio, ascii, dude, projects, programmer, programming">
+        <meta name="robots" content="index, follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="English">
+
+    </head>
+
+    <body>
+        <div class="text-center">
+            <div class="mw-50 center-mw-50">
+                <div class="mt-3"></div>
+                <img
+                    src="images/pfp.png"
+                    class="rounded-circle avatar"
+                    width="150"
+                    height="150"
+                />
+
+                <p class="mt-3-sm">
+                    Hello, <strong>asciidude</strong>!
+                    <i class="fa-solid fa-hand-peace border-white"></i>
+                </p>
+
+                <% if(admin) { %>
+                    <h3>You are logged in as an admin.</h3>
+                    <a class="button" href="/add-project">
+                        Add Project
+                    </a>
+                <% } %>
+
+                <h2 class="mb-1"><strong>About me</strong></h2>
+                <hr />
+                <div class="margin-fix">
+                    <p>I'm a 18-year-old enthusiastic programmer.</p>
+                    <p>
+                        My curiosity fuels the need to learn new things,
+                        focusing primarily on the topics I
+                        <strong>don't</strong> know, rather than the ones I do.
+                    </p>
+                    <p class="mb-0">
+                        <strong
+                            >"A man who dares to waste one hour of time has not
+                            discovered the value of life"</strong
+                        >
+                    </p>
+                    <p class="mt-0">— Charles Darwin</p>
+                </div>
+
+                <h2 class="mb-1"><strong>My projects</strong></h2>
+                <hr />
+
+                <div class="container">
+                    <div class="mb-2"></div>
+
+                    <% if(projects.length > 0) { %>
+                        <% for (let i = 0; i < projects.length; i++) { %>
+                            <div class="card">
+                                <h3 class="card-title">
+                                    <%- projects[i].name %>
+                        
+                                    <% if (projects[i].status === 'active') { %>
+                                        <span class="tag tag-green">Active</span>
+                                    <% } else if (projects[i].status === 'inactive') { %>
+                                        <span class="tag tag-red">Inactive</span>
+                                    <% } else if (projects[i].status === 'archive') { %>
+                                        <span class="tag tag-yellow">Archived</span>
+                                    <% } %>
+                                </h3>
+                        
+                                <% if (typeof projects[i].thumbnailUrl === 'string' && projects[i].thumbnailUrl) { %>
+                                    <img
+                                        src="<%- projects[i].thumbnailUrl %>"
+                                        alt="Image"
+                                        class="rounded shadow"
+                                        height="200"
+                                    />
+                                <% } %>
+                        
+                                <p class="card-content">
+                                    <%- projects[i].description %>
+                                </p>
+                        
+                                <div class="card-padding-top"></div>
+                        
+                                <a class="button" href="<%- projects[i].link %>">
+                                    Go to project
+                                </a>
+                        
+                                <% if (admin) { %>
+                                    <div class="form-inline mt-2">
+                                        <form action="/edit-project/<%-projects[i]._id%>" method="get" class="form-inline mr-1">
+                                            <button type="submit" class="button button-blue">Edit</button>
+                                        </form>
+                        
+                                        <form action="/api/projects/delete/<%-projects[i]._id%>" method="post" class="form-inline">
+                                            <button type="submit" class="button button-red">Delete</button>
+                                        </form>
+                                    </div>
+                                <% } %>
+                        
+                                <div class="card-padding"></div>
+                            </div>
+                        
+                            <% if (i < projects.length - 1) { %>
+                                <div class="mb-2"></div>
+                            <% } %>
+                        <% } %>
+                    <% } else { %>
+                        <h3>No projects found :(</h3>
+                    <% } %>
+                    
+                    <div class="mb-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-ft"></div>
+
+        <div class="footer text-center">
+            <a href="https://a4aontario.com/donate/" class="link">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                Donate to A4A
+            </a>
+            <span>|</span><% if(!admin) { %><a href="/auth" class="link">
+                <i class="fa-solid fa-key"></i>
+                Authenticate Admin
+            </a><% } else { %><a href="/api/auth/logout" class="link">
+                <i class="fa-solid fa-sign-out"></i>
+                Logout Admin
+            </a><% } %>
+        </div>
+    </body>
+</html>

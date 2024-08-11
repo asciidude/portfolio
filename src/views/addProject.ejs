@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin - Add Project</title>
+    </head>
+    <body>
+        <h2>Add New Project</h2>
+        <p>Accessing this page while unauthorized by the site owner is not permitted.</p>
+
+        <form action="/api/projects/add" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="text" name="name" id="name" placeholder="Enter name" required>
+            <input type="text" name="description" id="description" placeholder="Enter description" required>
+            <input type="text" name="link" id="link" placeholder="Enter link" required>
+            <input type="text" name="status" id="status" placeholder="Enter status" required>
+            <input type="text" name="thumbnailUrl" id="thumbnailUrl" placeholder="Enter thumbnail URL">
+            <input type="submit" value="Add Project">
+        </form>
+        
+        <h3>Project Statuses</h3>
+        <ul>
+            <li>active</li>
+            <li>inactive</li>
+            <li>archive</li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Authenticate Admin</title>
+    </head>
+    <body>
+        <h2>Important Notice</h2>
+        <ul>
+            <li>This page is for <b>administrative use only</b>.</li>
+            <li>Attempts to login or register will be known by the site owner along with your IP address.</li>
+            <li>If you are not authorized to be here, or simply looking around, please click off now.</li>
+        </ul>
+
+        <h2>Register</h2>
+        <form action="/api/auth/register" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="text" name="adminKey" id="email" placeholder="Admin Authentication Key" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" >
+            <input type="text" name="email" id="email" placeholder="email@domain.com" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" >
+            <input type="password" name="password" id="password" placeholder="⁕⁕⁕⁕⁕⁕⁕⁕" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" >
+            <input type="submit" value="Register Admin">
+        </form>
+        
+        <h2>Login</h2>
+        <form action="/api/auth/login" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="text" name="adminKey" id="email" placeholder="Admin Authentication Key" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" >
+            <input type="text" name="email" id="email" placeholder="email@domain.com" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" >
+            <input type="password" name="password" id="password" placeholder="⁕⁕⁕⁕⁕⁕⁕⁕" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" >
+            <input type="submit" value="Login as Admin">
+        </form>
+    </body>
+</html>

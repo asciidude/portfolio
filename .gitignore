@@ -1,0 +1,4 @@
+.env
+TODO
+src/logs/*
+node_modules

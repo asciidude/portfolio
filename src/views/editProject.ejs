@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin - Edit Project</title>
+    </head>
+    <body>
+        <% if(project) { %>
+            <h2>Edit Existing Project</h2>
+            <p>Accessing this page while unauthorized by the site owner is not permitted.</p>
+
+            <form action="/api/projects/edit/<%- project.id %>" method="post" enctype="application/x-www-form-urlencoded">
+                <input type="text" name="name" id="name" placeholder="Enter name" value="<%- project.name %>" required>
+                <input type="text" name="description" id="description" placeholder="Enter description" value="<%- project.description %>" required>
+                <input type="text" name="link" id="link" placeholder="Enter link" value="<%- project.link %>" required>
+                <input type="text" name="status" id="status" placeholder="Enter status" value="<%- project.status %>" required>
+                <input type="text" name="thumbnailUrl" id="thumbnailUrl" placeholder="Enter thumbnail URL" value="<%- project.thumbnailUrl %>">
+                <input type="submit" value="Edit Project">
+            </form>
+            
+            <h3>Project Statuses</h3>
+            <ul>
+                <li>active</li>
+                <li>inactive</li>
+                <li>archive</li>
+            </ul>
+        <% } else { %>
+            <p>No project found.</p>
+        <% } %>
+    </body>
+</html>
