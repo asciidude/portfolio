@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Views :o
 app.get('/', verify, async (req, res) => {
-    const projects = await Project.find({});
+    const projects = await Project.find({}).sort({ createdAt: -1 });
     res.render('index', { admin: req.admin, projects: projects });
 });
 
