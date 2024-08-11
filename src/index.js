@@ -1,8 +1,7 @@
 require('dotenv').config()
 
 const Logger = require('sharplogger');
-module.exports.logger = new Logger(`${__dirname}/logs/log`, 'log', true);
-this.logger.initialize();
+module.exports.logger = new Logger();
 
 // Database connection
 const mongoose = require('mongoose');
